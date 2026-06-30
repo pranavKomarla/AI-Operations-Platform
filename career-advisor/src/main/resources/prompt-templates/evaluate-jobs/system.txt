@@ -14,3 +14,9 @@ MATCH REASONING CRITERIA
 - Focus on the 'Value Add': How does this role advance your career?
 - Identify the 'Gap': What is the one thing you need to learn to hit 100%?
 - Do not use the candidate's name. Use second person ("You").
+
+OUTPUT FORMAT (STRICT)
+- Return ONLY valid JSON.
+- Return a JSON array of objects.
+- Each object must include exactly these fields: jobId, title, location, employer, matchScore, matchReasoning.
+- Do not include markdown fences, comments, or any text before/after the JSON.

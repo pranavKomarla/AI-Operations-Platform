@@ -1,5 +1,7 @@
 package com.pranav.advisor.controller;
 
+import com.pranav.advisor.service.CareerAdvisorService;
+import com.pranav.advisor.dto.CareerAdvisorPrompts;
 import com.pranav.advisor.dto.JobEvaluationResult;
 import com.pranav.advisor.dto.JobsComparisonResult;
 import com.pranav.advisor.dto.TailoredResume;
@@ -10,32 +12,34 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Collections;
 import java.util.List;
 
-/*
-* Career-advisor is not a resource manager. These are action oriented endpoints.
-* */
 @CrossOrigin
 @RestController
 @RequestMapping("/api/career-advisor")
 public class CareerAdvisorController {
 
     private static final Logger log = LoggerFactory.getLogger(CareerAdvisorController.class);
+    private final CareerAdvisorService careerAdvisorService;
+
+    public CareerAdvisorController(CareerAdvisorService careerAdvisorService) {
+        this.careerAdvisorService = careerAdvisorService;
+    }
 
     @GetMapping("/find-jobs")
     public List<JobEvaluationResult> findJobs(@RequestParam Integer candidateId) {
         log.info("Finding jobs for candidateId: {}", candidateId);
-        return Collections.emptyList();
+        return this.careerAdvisorService.findJobs(candidateId);
     }
 
     @GetMapping("/compare-jobs")
     public JobsComparisonResult compareJobs(@RequestParam Integer candidateId, @RequestParam List<Integer> jobIds) {
         log.info("Comparing jobs for candidateId: {}, jobIds: {}", candidateId, jobIds);
-        return null;
+        return this.careerAdvisorService.compareJobs(candidateId, jobIds);
     }
 
     @GetMapping("/generate-resume")
     public TailoredResume generateResume(@RequestParam Integer candidateId, @RequestParam Integer jobId) {
         log.info("Generating resume for candidateId: {}, jobId: {}", candidateId, jobId);
-        return null;
+        return this.careerAdvisorService.generateResume(candidateId, jobId);
     }
 
 }

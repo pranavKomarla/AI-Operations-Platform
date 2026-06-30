@@ -2,7 +2,6 @@ package com.pranav.job_service.dto;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Set;
 
 public record JobDetails(Integer id,
                          String title,

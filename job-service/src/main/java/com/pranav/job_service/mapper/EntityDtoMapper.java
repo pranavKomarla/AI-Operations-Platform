@@ -6,9 +6,8 @@ import com.pranav.job_service.dto.JobSummary;
 import com.pranav.job_service.entity.Job;
 import com.pranav.job_service.entity.JobSkill;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 public class EntityDtoMapper {
 
@@ -39,7 +38,7 @@ public class EntityDtoMapper {
 
     private static List<String> extractSkillNames(List<JobSkill> skills){
         return skills.stream()
-                .map(JobSkill::getSkill)
+                .map(s -> Objects.requireNonNull(s).getSkill())
                 .toList();
     }
 
