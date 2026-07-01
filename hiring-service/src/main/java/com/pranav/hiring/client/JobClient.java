@@ -25,7 +25,9 @@ public class JobClient {
 
     public List<JobDetails> getJobsDetails(List<Integer> ids) {
         return this.restClient.get()
-                              .uri(JOBS_BY_IDS_URI, ids)
+                              .uri(uriBuilder -> uriBuilder.path("/api/jobs")
+                                                           .queryParam("ids", ids)
+                                                           .build())
                               .retrieve()
                               .body(new ParameterizedTypeReference<List<JobDetails>>() {
                               });
